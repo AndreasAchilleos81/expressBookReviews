@@ -11,14 +11,14 @@ public_users.post("/register", (req, res) => {
 
   if (username && password) {
     let filteredUsers = users.filter(u => { return (u.username === username && u.password === password) });
-    if (filteredUsers.length > 0){
-      res.status(200).json({message: "user already registered"});
+    if (filteredUsers.length > 0) {
+      return res.status(200).json({ message: "user already registered" });
     }
-    users.push({username: username, password: password});
-    res.status(200).json({message: `Registration of ${username} is complete`});
+    users.push({ username: username, password: password });
+    return res.status(200).json({ message: `Registration of ${username} is complete` });
   }
 
-  res.status(404).json({ message: "missing username or password unable to register user" });
+  return res.status(404).json({ message: "missing username or password unable to register user" });
 
 });
 
